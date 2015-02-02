@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link href="./flip.css" rel="stylesheet">
+    <link href="./animate.min.css" rel="stylesheet">
+    <title>theFlip</title>
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+		  data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">theFlip</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+          <button type="button"class="btn btn-default btn-lg" id="play">Play</button>
+      </div>
+      <div class="row">
+	<div class="col-xs-9">
+	    <div class="row">
+	      <div class="col-xs-3" style="background-color:#1f77b4" id="cell1"></div>
+	      <div class="col-xs-3" style="background-color:#ff7f0e" id="cell2"></div>
+	      <div class="col-xs-3" style="background-color:#2ca02c" id="cell3"></div>
+	      <div class="col-xs-3" style="background-color:#d62728" id="cell4"></div>
+	    </div>
+	    <div class="row">
+	      <div class="col-xs-3" style="background-color:rgba(50,50,50,1)" id="cell5"></div>
+	      <div class="col-xs-3" style="background-color:#9467bd" id="cell6"></div>
+	      <div class="col-xs-3" style="background-color:#8c564b" id="cell7"></div>
+	      <div class="col-xs-3" style="background-color:#e377c2" id="cell8"></div>
+	    </div>
+	    <div class="row">
+	      <div class="col-xs-3" style="background-color:#daa520" id="cell9"></div>
+	      <div class="col-xs-3" style="background-color:#bcbd22" id="cell10"></div>
+	      <div class="col-xs-3" style="background-color:#c71585" id="cell11"></div>
+	      <div class="col-xs-3" style="background-color:rgba(86,61,250,1)" id="cell12"></div>
+	    </div>
+	    <div class="row">
+	      <div class="col-xs-3" style="background-color:#ff4500" id="cell13"></div>
+	      <div class="col-xs-3" style="background-color:#87cdfa" id="cell14"></div>
+	      <div class="col-xs-3" style="background-color:#7f7f7f" id="cell15"></div>
+	      <div class="col-xs-3" style="background-color:#3cb371" id="cell16"></div>
+	    </div>
+	  </div>
+	<div class="col-xs-2 col-xs-offset-1">
+	  <form id="players">
+	    <div class="form-group">
+	      <input type="text" class="form-control" placeholder="Player 1"  id="p1">
+	    </div>
+	    <div class="form-group">
+	      <input type="text" class="form-control" placeholder="Player 2"  id="p2">
+	    </div>
+	    <div class="form-group">
+	      <input type="text" class="form-control" placeholder="Player 3"  id="p3">
+	    </div>
+	    <div class="form-group">
+	      <input type="text" class="form-control" placeholder="Player 4"  id="p4">
+	    </div>
+	    <div class="form-group">
+	      <input type="text" class="form-control" placeholder="Player 5"  id="p5">
+	    </div>
+	    <div class="form-group">
+	      <input type="text" class="form-control" placeholder="Player 6"  id="p6">
+	    </div>
+	    <div class="form-group">
+	      <input type="text" class="form-control" placeholder="Player 7"  id="p7">
+	    </div>
+	    <div class="form-group">
+	      <input type="text" class="form-control" placeholder="Player 8"  id="p8">
+	    </div>
+	    <div class="form-group">
+	      <input type="text" class="form-control" placeholder="Player 9"  id="p9">
+	    </div>
+	    <div class="form-group">
+	      <input type="text" class="form-control" placeholder="Player 10" id="p10">
+	    </div>
+	    <div class="form-group">
+       	      <input type="text" class="form-control" placeholder="Player 11" id="p11">
+	    </div>
+	    <div class="form-group">
+	      <input type="text" class="form-control" placeholder="Player 12" id="p12">
+	    </div>
+	    <div class="form-group">
+	      <input type="text" class="form-control" placeholder="Player 13" id="p13">
+	    </div>
+	    <div class="form-group">
+	      <input type="text" class="form-control" placeholder="Player 14" id="p14">
+	    </div>
+	    <div class="form-group">
+	      <input type="text" class="form-control" placeholder="Player 15" id="p15">
+	    </div>
+	    <div class="form-group">
+	      <input type="text" class="form-control" placeholder="Player 16" id="p16">
+	    </div>
+	  </form>
+	</div>
+    </div> <!-- /container -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="./flip.js"></script>
+  </body>
+</html>
