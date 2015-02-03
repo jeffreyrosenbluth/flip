@@ -20,6 +20,10 @@ function active(array) {
     return array.filter(function(x){return ($(x).text() !== "");});
 }
 
+function inactive(array) {
+    return array.filter(function(x){return ($(x).text() === "");});
+}
+
 var order = shuffle([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
 
 var anims = shuffle(
@@ -65,16 +69,21 @@ for (var i = 0; i < 16; i++) {
 }
 
 function play() {
-    var ps = active(cells);
-    count = ps.length;
+    var alive = shuffle(active(cells));
+    var dead = inactive(cells);
+    count = alive.length;
     if (count < 2) { return; }
-    $(cells[order[0]]).addClass('animated ' + anims[order[0]])
-        .one('webkitAnimationEnd', addAnimation(cells[order[1]], anims[order[1]]))
-    for (var i = 1; i < 14; i++) {
-        $(cells[order[i]]).one('webkitAnimationEnd', addAnimation(cells[order[i+1]], anims[order[i+1]]));
+    for (var i = 0; i < dead.length; i++) {
+	$(dead[i]).addClass('animated fadeOut');
     }
-    $(cells[order[15]]).css('webkit-animation-duration', '3s');
-    $(cells[order[14]]).on('webkitAnimationEnd', addAnimation(cells[order[15]], 'animated ' + winner[0]));
+    $(alive[0]).css('webkit-animation-delay', '2s');
+    $(alive[0]).addClass('animated ' + anims[order[0]])
+        .one('webkitAnimationEnd', addAnimation(alive[1], anims[order[1]]))
+    for (var i = 1; i < count-2; i++) {
+        $(alive[i]).one('webkitAnimationEnd', addAnimation(alive[i+1], anims[order[i+1]]));
+    }
+    $(alive[count-1]).css('webkit-animation-duration', '3s');
+    $(alive[count-2]).on('webkitAnimationEnd', addAnimation(alive[count-1], 'animated ' + winner[0]));
 }
 
 $('#play').click(play);
