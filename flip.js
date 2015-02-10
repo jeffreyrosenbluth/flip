@@ -5,6 +5,9 @@ var cells = ['#cell1', '#cell2', '#cell3', '#cell4', '#cell5', '#cell6'
 	    ,'#cell7', '#cell8', '#cell9', '#cell10','#cell11','#cell12'
 	    ,'#cell13', '#cell14', '#cell15', '#cell16'];
 
+var alive = [];
+var dead = [];
+
 function shuffle(array) {
   var m = array.length, t, i;
   while (m) {
@@ -26,14 +29,13 @@ function inactive(array) {
 
 var order = shuffle([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
 
-var anims = shuffle(
-            ['bounceOut', 'bounceOutDown', 'bounceOutLeft', 'bounceOutRight', 'bounceOutUp',
+var anims = ['bounceOut', 'bounceOutDown', 'bounceOutLeft', 'bounceOutRight', 'bounceOutUp',
 	     'fadeOut', 'fadeOutDown', 'fadeOutDownBig', 'fadeOutLeft', 'fadeOutLeftBig',
 	     'fadeOutRight', 'fadeOutRightBig', 'fadeOutUp', 'fadeOutUpBig',
 	     'flipOutX', 'flipOutY', 'lightSpeedOut',
 	     'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'rotateOutUpLeft', 'rotateOutUpRight',
 	     'rollOut', 'zoomOut', 'zoomOutDown', 'zoomOutRight', 'zoomOutUp',
-	     'slideOutDown', 'slideOutLeft', 'slideOutRight', 'slideOutUp']);
+	     'slideOutDown', 'slideOutLeft', 'slideOutRight', 'slideOutUp'];
 
 var winner = shuffle(['bounce', 'flash', 'flip', 'rubberBand', 'shake', 'swing', 'tada', 'wobble']);
 
@@ -69,21 +71,34 @@ for (var i = 0; i < 16; i++) {
 }
 
 function play() {
-    var alive = shuffle(active(cells));
-    var dead = inactive(cells);
+    $('#players').remove();
+    alive = shuffle(active(cells));
+    dead = inactive(cells);
+    anims = shuffle(anims)
     count = alive.length;
     if (count < 2) { return; }
     for (var i = 0; i < dead.length; i++) {
 	$(dead[i]).addClass('animated fadeOut');
     }
     $(alive[0]).css('webkit-animation-delay', '2s');
-    $(alive[0]).addClass('animated ' + anims[order[0]])
-        .one('webkitAnimationEnd', addAnimation(alive[1], anims[order[1]]))
+    $(alive[0]).addClass('animated ' + anims[0])
+        .one('webkitAnimationEnd', addAnimation(alive[1], anims[1]))
     for (var i = 1; i < count-2; i++) {
-        $(alive[i]).one('webkitAnimationEnd', addAnimation(alive[i+1], anims[order[i+1]]));
+        $(alive[i]).one('webkitAnimationEnd', addAnimation(alive[i+1], anims[i+1]));
     }
     $(alive[count-1]).css('webkit-animation-duration', '3s');
     $(alive[count-2]).on('webkitAnimationEnd', addAnimation(alive[count-1], 'animated ' + winner[0]));
 }
 
 $('#play').click(play);
+
+function reset() {
+    for (var i = 0; i < alive.length; i++) {
+    	$(alive[i]).removeClass('animated ' + anims[i]);
+    }
+    for (var i = 0; i < dead.length; i++) {
+    	$(dead[i]).removeClass('animated fadeOut');
+    }
+}
+
+$('#reset').click(reset);
