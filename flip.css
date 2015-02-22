@@ -1,11 +1,11 @@
 [class*="col-"] {
-  padding-top: 60px;
+  padding-top: 45px;
   padding-bottom: 15px;
   text-align: center;
   font-family: Helvetica, Arial;
   font-weight: Bold;
   font-size: 2vw;
-  height: 150px;
+  height: 120px;
   color: white;
 }
 
